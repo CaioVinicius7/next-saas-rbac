@@ -28,6 +28,15 @@ export async function createAccount(app: FastifyInstance) {
         }
       });
 
+      const [, domain] = email.split("@");
+
+      const autoJoinOrganization = await prisma.organization.findFirst({
+        where: {
+          domain,
+          shouldAttachUsersByDomain: true
+        }
+      });
+
       if (userWithSameEmail) {
         return reply.status(400).send({
           message: "user with same e-mail already exists."
@@ -40,7 +49,14 @@ export async function createAccount(app: FastifyInstance) {
         data: {
           name,
           email,
-          passwordHash
+          passwordHash,
+          member_on: autoJoinOrganization
+            ? {
+                create: {
+                  organizationId: autoJoinOrganization.id
+                }
+              }
+            : undefined
         }
       });
 
