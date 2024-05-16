@@ -20,7 +20,8 @@ export async function getProfile(app: FastifyInstance) {
               avatarUrl: z.string().url().nullable()
             })
           })
-        }
+        },
+        security: [{ apiKey: [] }]
       }
     },
     async (request, reply) => {

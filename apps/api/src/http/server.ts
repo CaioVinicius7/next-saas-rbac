@@ -24,7 +24,16 @@ app.register(fastifySwagger, {
       description: "Full-stack SaaS app with multi-tenant & RBAC.",
       version: "1.0.0"
     },
-    servers: []
+    servers: [],
+    components: {
+      securitySchemes: {
+        apiKey: {
+          type: "apiKey",
+          name: "Authorization",
+          in: "header"
+        }
+      }
+    }
   },
   transform: jsonSchemaTransform
 });
