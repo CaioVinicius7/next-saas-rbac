@@ -27,7 +27,7 @@ export async function getProfile(app: FastifyInstance) {
               })
             })
           },
-          security: [{ apiKey: [] }]
+          security: [{ bearerAuth: [] }]
         }
       },
       async (request, reply) => {
