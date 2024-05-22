@@ -8,6 +8,7 @@ import { requestPasswordRecover } from "./auth/request-password-recover";
 import { resetPassword } from "./auth/reset-password";
 import { createOrganization } from "./orgs/create-organization";
 import { getMembership } from "./orgs/get-membership";
+import { getOrganization } from "./orgs/get-organization";
 
 export async function routes(app: FastifyInstance) {
   app.register(createAccount);
@@ -19,4 +20,5 @@ export async function routes(app: FastifyInstance) {
 
   app.register(createOrganization);
   app.register(getMembership);
+  app.register(getOrganization);
 }
