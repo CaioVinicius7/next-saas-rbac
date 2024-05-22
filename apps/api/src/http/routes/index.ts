@@ -7,6 +7,7 @@ import { getProfile } from "./auth/get-profile";
 import { requestPasswordRecover } from "./auth/request-password-recover";
 import { resetPassword } from "./auth/reset-password";
 import { createOrganization } from "./orgs/create-organization";
+import { getMembership } from "./orgs/get-membership";
 
 export async function routes(app: FastifyInstance) {
   app.register(createAccount);
@@ -17,4 +18,5 @@ export async function routes(app: FastifyInstance) {
   app.register(authenticateWithGithub);
 
   app.register(createOrganization);
+  app.register(getMembership);
 }
