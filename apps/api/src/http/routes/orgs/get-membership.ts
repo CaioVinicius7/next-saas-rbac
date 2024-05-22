@@ -10,10 +10,10 @@ export async function getMembership(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
     .get(
-      "/organization/:slug/membership",
+      "/organizations/:slug/membership",
       {
         schema: {
-          tags: ["organization"],
+          tags: ["organizations"],
           summary: "Get user membership on organization",
           security: [{ bearerAuth: [] }],
           params: z.object({
