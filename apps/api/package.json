@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npm run env:load tsx watch src/http/server.ts",
-    "bd:migrate": "npm run env:load prisma migrate dev",
-    "bd:studio": "npm run env:load prisma studio",
+    "db:migrate": "npm run env:load prisma migrate dev",
+    "db:studio": "npm run env:load prisma studio",
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
