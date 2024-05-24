@@ -14,6 +14,7 @@ import { shutdownOrganization } from "./orgs/shutdown-organization";
 import { transferOrganization } from "./orgs/transfer-organization";
 import { updateOrganization } from "./orgs/update-organization";
 import { createProject } from "./projects/create-project";
+import { deleteProject } from "./projects/delete-project";
 
 export async function routes(app: FastifyInstance) {
   app.register(createAccount);
@@ -32,4 +33,5 @@ export async function routes(app: FastifyInstance) {
   app.register(transferOrganization);
 
   app.register(createProject);
+  app.register(deleteProject);
 }
