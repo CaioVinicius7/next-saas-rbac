@@ -17,6 +17,7 @@ import { createProject } from "./projects/create-project";
 import { deleteProject } from "./projects/delete-project";
 import { getProject } from "./projects/get-project";
 import { getProjects } from "./projects/get-projects";
+import { updateProject } from "./projects/update-project";
 
 export async function routes(app: FastifyInstance) {
   app.register(createAccount);
@@ -38,4 +39,5 @@ export async function routes(app: FastifyInstance) {
   app.register(deleteProject);
   app.register(getProject);
   app.register(getProjects);
+  app.register(updateProject);
 }
