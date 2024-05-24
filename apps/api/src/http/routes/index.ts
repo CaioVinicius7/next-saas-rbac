@@ -10,6 +10,7 @@ import { createOrganization } from "./orgs/create-organization";
 import { getMembership } from "./orgs/get-membership";
 import { getOrganization } from "./orgs/get-organization";
 import { getOrganizations } from "./orgs/get-organizations";
+import { updateOrganization } from "./orgs/update-organization";
 
 export async function routes(app: FastifyInstance) {
   app.register(createAccount);
@@ -23,4 +24,5 @@ export async function routes(app: FastifyInstance) {
   app.register(getMembership);
   app.register(getOrganization);
   app.register(getOrganizations);
+  app.register(updateOrganization);
 }
