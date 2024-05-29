@@ -89,7 +89,7 @@ export async function getProjects(app: FastifyInstance) {
           }
         });
 
-        return reply.status(201).send({
+        return reply.status(200).send({
           projects
         });
       }
