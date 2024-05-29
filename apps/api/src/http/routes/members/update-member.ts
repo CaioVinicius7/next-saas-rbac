@@ -8,6 +8,8 @@ import { UnauthorizedError } from "@/http/routes/_errors/unauthorized-error";
 import { prisma } from "@/lib/prisma";
 import { getUserPermissions } from "@/utils/get-user-permissions";
 
+import { BadRequestError } from "../_errors/bad-request-error";
+
 export async function updateMember(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
@@ -49,6 +51,12 @@ export async function updateMember(app: FastifyInstance) {
         }
 
         const { role } = request.body;
+
+        if (memberId === membership.id) {
+          throw new BadRequestError(
+            "You're not allowed to update your role, please use the organization transfer."
+          );
+        }
 
         await prisma.member.update({
           where: {
