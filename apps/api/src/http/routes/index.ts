@@ -6,6 +6,7 @@ import { createAccount } from "./auth/create-account";
 import { getProfile } from "./auth/get-profile";
 import { requestPasswordRecover } from "./auth/request-password-recover";
 import { resetPassword } from "./auth/reset-password";
+import { getMembers } from "./members/get-members";
 import { createOrganization } from "./orgs/create-organization";
 import { getMembership } from "./orgs/get-membership";
 import { getOrganization } from "./orgs/get-organization";
@@ -40,4 +41,6 @@ export async function routes(app: FastifyInstance) {
   app.register(getProject);
   app.register(getProjects);
   app.register(updateProject);
+
+  app.register(getMembers);
 }
