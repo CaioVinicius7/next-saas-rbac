@@ -1,6 +1,7 @@
 "use server";
 
 import { HTTPError } from "ky";
+import { cookies } from "next/headers";
 import { z } from "zod";
 
 import { signInWithEmailAndPassword as signInWithEmailAndPasswordFn } from "@/http/signInWithEmailAndPassword";
@@ -31,7 +32,10 @@ export async function signInWithEmailAndPassword(data: FormData) {
       password
     });
 
-    console.log(token);
+    cookies().set("@saas-next:auth-token", token, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7 // 7 days
+    });
   } catch (error) {
     if (error instanceof HTTPError) {
       const { message } = await error.response.json();

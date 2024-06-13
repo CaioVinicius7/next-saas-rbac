@@ -3,6 +3,7 @@
 import { AlertTriangle, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import gitHubIcon from "@/assets/github.svg";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -15,8 +16,13 @@ import { useFormState } from "@/hooks/useFormState";
 import { signInWithEmailAndPassword } from "./actions";
 
 export function SignInForm() {
+  const router = useRouter();
+
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    () => {
+      router.push("/");
+    }
   );
 
   return (
