@@ -1,5 +1,5 @@
 {
-  "name": "@sass/env",
+  "name": "@saas/env",
   "version": "0.0.0",
   "private": true,
   "main": "index.ts",

@@ -1,4 +1,4 @@
-import { env } from "@sass/env";
+import { env } from "@saas/env";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";

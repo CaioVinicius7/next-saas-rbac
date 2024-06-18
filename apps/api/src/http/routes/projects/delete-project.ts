@@ -1,4 +1,4 @@
-import { projectSchema } from "@sass/auth";
+import { projectSchema } from "@saas/auth";
 import type { FastifyInstance } from "fastify";
 import type { ZodTypeProvider } from "fastify-type-provider-zod";
 import z from "zod";
