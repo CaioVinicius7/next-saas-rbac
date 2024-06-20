@@ -4,14 +4,14 @@ import { HTTPError } from "ky";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
-import { signInWithEmailAndPassword as signInWithEmailAndPasswordFn } from "@/http/signInWithEmailAndPassword";
+import { signInWithEmailAndPassword } from "@/http/signInWithEmailAndPassword";
 
 const signInSchema = z.object({
   email: z.string().email("Please, provide a valid e-mail address."),
   password: z.string().min(1, "Please, provide your password.")
 });
 
-export async function signInWithEmailAndPassword(data: FormData) {
+export async function signInWithEmailAndPasswordAction(data: FormData) {
   const result = signInSchema.safeParse(Object.fromEntries(data));
 
   if (!result.success) {
@@ -27,7 +27,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
   const { email, password } = result.data;
 
   try {
-    const { token } = await signInWithEmailAndPasswordFn({
+    const { token } = await signInWithEmailAndPassword({
       email,
       password
     });

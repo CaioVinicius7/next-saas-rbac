@@ -14,13 +14,13 @@ import { Separator } from "@/components/ui/separator";
 import { useFormState } from "@/hooks/useFormState";
 
 import { signInWithGithub } from "../actions";
-import { signInWithEmailAndPassword } from "./actions";
+import { signInWithEmailAndPasswordAction } from "./actions";
 
 export function SignInForm() {
   const router = useRouter();
 
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    signInWithEmailAndPassword,
+    signInWithEmailAndPasswordAction,
     () => {
       router.push("/");
     }
@@ -70,7 +70,7 @@ export function SignInForm() {
           </Link>
         </div>
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" disabled={isPending} className="w-full">
           {isPending ? (
             <Loader2 className="size-4 animate-spin" />
           ) : (
