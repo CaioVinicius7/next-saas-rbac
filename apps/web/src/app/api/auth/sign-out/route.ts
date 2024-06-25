@@ -1,12 +1,14 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 
+import { cookiesKeys } from "@/config/cookiesKeys";
+
 export async function GET(request: NextRequest) {
   const redirectUrl = request.nextUrl.clone();
 
   redirectUrl.pathname = "/auth/sign-in";
 
-  cookies().delete("@saas-next:auth-token");
+  cookies().delete(cookiesKeys.ACCESS_TOKEN);
 
   return NextResponse.redirect(redirectUrl);
 }

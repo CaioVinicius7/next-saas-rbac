@@ -1,5 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import { cookiesKeys } from "./config/cookiesKeys";
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -8,9 +10,9 @@ export function middleware(request: NextRequest) {
   if (pathname.startsWith("/org")) {
     const [, , slug] = pathname.split("/");
 
-    response.cookies.set("@saas-next:org", slug);
+    response.cookies.set(cookiesKeys.CURRENT_ORGANIZATION, slug);
   } else {
-    response.cookies.delete("@saas-next:org");
+    response.cookies.delete(cookiesKeys.CURRENT_ORGANIZATION);
   }
 
   return response;

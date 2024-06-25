@@ -2,6 +2,8 @@ import { getCookie } from "cookies-next";
 import type { CookiesFn } from "cookies-next/lib/types";
 import ky from "ky";
 
+import { cookiesKeys } from "@/config/cookiesKeys";
+
 export const httpClient = ky.create({
   prefixUrl: "http://localhost:3333",
   hooks: {
@@ -14,7 +16,7 @@ export const httpClient = ky.create({
 
           cookieStore = serverCookies;
         }
-        const token = getCookie("@saas-next:auth-token", {
+        const token = getCookie(cookiesKeys.ACCESS_TOKEN, {
           cookies: cookieStore
         });
 

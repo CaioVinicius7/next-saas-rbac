@@ -4,6 +4,7 @@ import { HTTPError } from "ky";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
+import { cookiesKeys } from "@/config/cookiesKeys";
 import { signInWithEmailAndPassword } from "@/http/signInWithEmailAndPassword";
 
 const signInSchema = z.object({
@@ -32,7 +33,7 @@ export async function signInWithEmailAndPasswordAction(data: FormData) {
       password
     });
 
-    cookies().set("@saas-next:auth-token", token, {
+    cookies().set(cookiesKeys.ACCESS_TOKEN, token, {
       path: "/",
       maxAge: 60 * 60 * 24 * 7 // 7 days
     });

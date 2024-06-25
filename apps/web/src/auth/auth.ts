@@ -1,14 +1,15 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { cookiesKeys } from "@/config/cookiesKeys";
 import { getProfile } from "@/http/getProfile";
 
 export function isAuthenticated() {
-  return !!cookies().get("@saas-next:auth-token")?.value;
+  return !!cookies().get(cookiesKeys.ACCESS_TOKEN)?.value;
 }
 
 export async function auth() {
-  const token = cookies().get("@saas-next:auth-token")?.value;
+  const token = cookies().get(cookiesKeys.ACCESS_TOKEN)?.value;
 
   if (!token) {
     redirect("/auth/sign-in");

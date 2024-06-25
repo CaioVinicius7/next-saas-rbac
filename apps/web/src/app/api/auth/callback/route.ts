@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 
+import { cookiesKeys } from "@/config/cookiesKeys";
 import { signInWithGithub } from "@/http/signInWithGithub";
 
 export async function GET(request: NextRequest) {
@@ -23,7 +24,7 @@ export async function GET(request: NextRequest) {
     code
   });
 
-  cookies().set("@saas-next:auth-token", token, {
+  cookies().set(cookiesKeys.ACCESS_TOKEN, token, {
     path: "/",
     maxAge: 60 * 60 * 24 * 7 // 7 days
   });
