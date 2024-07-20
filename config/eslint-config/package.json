@@ -8,7 +8,7 @@
     "node.js"
   ],
   "devDependencies": {
-    "@saas/prettier-config": "*",
+    "@saas/prettier-config": "workspace:*",
     "@rocketseat/eslint-config": "^2.2.2",
     "eslint-plugin-simple-import-sort": "^12.1.0"
   },

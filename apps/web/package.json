@@ -15,7 +15,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
-    "@saas/env": "*",
+    "@saas/env": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cookies-next": "^4.2.1",
@@ -27,12 +27,12 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8",
-    "@saas/auth": "*"
+    "@saas/auth": "workspace:*"
   },
   "devDependencies": {
-    "@saas/eslint-config": "*",
-    "@saas/prettier-config": "*",
-    "@saas/typescript-config": "*",
+    "@saas/eslint-config": "workspace:*",
+    "@saas/prettier-config": "workspace:*",
+    "@saas/typescript-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
