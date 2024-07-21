@@ -15,7 +15,7 @@ export async function Header() {
   console.log(permissions?.can("get", "Project"));
 
   return (
-    <header className="mx-auto flex max-w-[1200px] items-center justify-between">
+    <header className="mx-auto flex max-w-[1200px] items-center justify-between border-b pb-2">
       <div className="flex items-center gap-3">
         <Image src={logo} alt="logo" className="size-6 dark:invert" />
 
