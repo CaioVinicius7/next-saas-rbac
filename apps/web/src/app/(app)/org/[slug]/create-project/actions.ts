@@ -3,9 +3,12 @@
 import { HTTPError } from "ky";
 import { z } from "zod";
 
+import { getCurrentOrg } from "@/auth/auth";
+import { createProject } from "@/http/createProject";
+
 const createProjectSchema = z.object({
   name: z.string().min(4, "Please, include at least 4 characters."),
-  description: z.string()
+  description: z.string().min(1, "Please, include a description.")
 });
 
 export async function createProjectAction(data: FormData) {
@@ -24,7 +27,8 @@ export async function createProjectAction(data: FormData) {
   const { name, description } = result.data;
 
   try {
-    console.log({
+    await createProject({
+      org: getCurrentOrg()!,
       name,
       description
     });
