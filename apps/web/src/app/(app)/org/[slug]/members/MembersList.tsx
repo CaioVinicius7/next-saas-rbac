@@ -11,6 +11,7 @@ import { getMembership } from "@/http/getMembership";
 import { getOrganization } from "@/http/getOrganization";
 
 import { removeMemberAction } from "./actions";
+import { UpdateMemberRoleSelect } from "./UpdateMemberRoleSelect";
 
 export async function MembersList() {
   const currentOrg = getCurrentOrg();
@@ -31,80 +32,92 @@ export async function MembersList() {
       <div className="rounded border">
         <Table>
           <TableBody>
-            {members.map((member) => (
-              <TableRow key={member.id}>
-                <TableCell
-                  className="py-2.5"
-                  style={{
-                    width: 48
-                  }}
-                >
-                  <Avatar>
-                    <AvatarFallback />
+            {members.map((member) => {
+              const memberIsOwnerOrMe =
+                member.userId === membership.userId ||
+                member.userId === organization.ownerId;
 
-                    {!!member.avatarUrl && (
-                      <Image
-                        src={member.avatarUrl}
-                        width={32}
-                        height={32}
-                        alt=""
-                        className="aspect-square size-full"
-                      />
-                    )}
-                  </Avatar>
-                </TableCell>
+              return (
+                <TableRow key={member.id}>
+                  <TableCell
+                    className="py-2.5"
+                    style={{
+                      width: 48
+                    }}
+                  >
+                    <Avatar>
+                      <AvatarFallback />
 
-                <TableCell>
-                  <div className="flex flex-col">
-                    <span className="inline-flex items-center gap-2 font-medium">
-                      {member.name}
-                      {member.userId === membership.userId && " (me)"}
-                      {member.userId === organization.ownerId && (
-                        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                          <Crown className="size-3" />
-                          Owner
-                        </span>
+                      {!!member.avatarUrl && (
+                        <Image
+                          src={member.avatarUrl}
+                          width={32}
+                          height={32}
+                          alt=""
+                          className="aspect-square size-full"
+                        />
                       )}
-                    </span>
+                    </Avatar>
+                  </TableCell>
 
-                    <span className="text-xs text-muted-foreground">
-                      {member.email}
-                    </span>
-                  </div>
-                </TableCell>
+                  <TableCell>
+                    <div className="flex flex-col">
+                      <span className="inline-flex items-center gap-2 font-medium">
+                        {member.name}
+                        {member.userId === membership.userId && " (me)"}
+                        {member.userId === organization.ownerId && (
+                          <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                            <Crown className="size-3" />
+                            Owner
+                          </span>
+                        )}
+                      </span>
 
-                <TableCell className="py-2.5">
-                  <div className="flex items-center justify-end gap-2">
-                    {permissions?.can(
-                      "transfer_ownership",
-                      authOrganization
-                    ) && (
-                      <Button size="sm" variant="ghost">
-                        <ArrowLeftRight className="mr-2 size-4" />
-                        Transfer ownership
-                      </Button>
-                    )}
+                      <span className="text-xs text-muted-foreground">
+                        {member.email}
+                      </span>
+                    </div>
+                  </TableCell>
 
-                    {permissions?.can("delete", "User") && (
-                      <form action={removeMemberAction.bind(null, member.id)}>
-                        <Button
-                          disabled={
-                            member.userId === membership.userId ||
-                            member.userId === organization.ownerId
-                          }
-                          type="submit"
-                          variant="destructive"
-                          size="sm"
-                        >
-                          <UserMinus className="mr-2 size-4" />
-                          Remove
+                  <TableCell className="py-2.5">
+                    <div className="flex items-center justify-end gap-2">
+                      {permissions?.can(
+                        "transfer_ownership",
+                        authOrganization
+                      ) && (
+                        <Button size="sm" variant="ghost">
+                          <ArrowLeftRight className="mr-2 size-4" />
+                          Transfer ownership
                         </Button>
-                      </form>
-                    )}
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+                      )}
+
+                      <UpdateMemberRoleSelect
+                        memberId={member.id}
+                        defaultValue={member.role}
+                        disabled={
+                          memberIsOwnerOrMe ||
+                          permissions?.cannot("update", "User")
+                        }
+                      />
+
+                      {permissions?.can("delete", "User") && (
+                        <form action={removeMemberAction.bind(null, member.id)}>
+                          <Button
+                            disabled={memberIsOwnerOrMe}
+                            type="submit"
+                            variant="destructive"
+                            size="sm"
+                          >
+                            <UserMinus className="mr-2 size-4" />
+                            Remove
+                          </Button>
+                        </form>
+                      )}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </div>
