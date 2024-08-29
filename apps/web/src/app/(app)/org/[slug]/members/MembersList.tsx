@@ -85,7 +85,11 @@ export async function MembersList() {
                         "transfer_ownership",
                         authOrganization
                       ) && (
-                        <Button size="sm" variant="ghost">
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          disabled={memberIsOwnerOrMe}
+                        >
                           <ArrowLeftRight className="mr-2 size-4" />
                           Transfer ownership
                         </Button>
