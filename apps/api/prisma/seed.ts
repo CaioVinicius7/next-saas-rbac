@@ -79,6 +79,33 @@ async function seed() {
             }
           ]
         }
+      },
+      invites: {
+        createMany: {
+          data: [
+            {
+              email: faker.internet.email(),
+              role: "MEMBER",
+              authorId: firstUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            },
+            {
+              email: faker.internet.email(),
+              role: "ADMIN",
+              authorId: secondUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            },
+            {
+              email: faker.internet.email(),
+              role: "BILLING",
+              authorId: thirdUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            }
+          ]
+        }
       }
     }
   });
@@ -142,6 +169,33 @@ async function seed() {
             {
               userId: thirdUser.id,
               role: "MEMBER"
+            }
+          ]
+        }
+      },
+      invites: {
+        createMany: {
+          data: [
+            {
+              email: faker.internet.email(),
+              role: "MEMBER",
+              authorId: firstUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            },
+            {
+              email: faker.internet.email(),
+              role: "ADMIN",
+              authorId: secondUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            },
+            {
+              email: faker.internet.email(),
+              role: "BILLING",
+              authorId: thirdUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
             }
           ]
         }
@@ -211,11 +265,38 @@ async function seed() {
             }
           ]
         }
+      },
+      invites: {
+        createMany: {
+          data: [
+            {
+              email: faker.internet.email(),
+              role: "MEMBER",
+              authorId: firstUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            },
+            {
+              email: faker.internet.email(),
+              role: "ADMIN",
+              authorId: secondUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            },
+            {
+              email: faker.internet.email(),
+              role: "BILLING",
+              authorId: thirdUser.id,
+              createdAt: new Date(),
+              id: faker.string.uuid()
+            }
+          ]
+        }
       }
     }
   });
 }
 
 seed().then(() => {
-  console.log("Database seeded!");
+  console.log("Database seeded! 🌱");
 });
