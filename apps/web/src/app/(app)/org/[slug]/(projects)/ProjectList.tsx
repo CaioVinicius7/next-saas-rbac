@@ -38,7 +38,7 @@ export async function ProjectList() {
           <CardFooter className="flex items-center gap-1.5">
             <Avatar className="size-4">
               {!!project.owner.avatarUrl && (
-                <AvatarImage src="https://github.com/caioVinicius7.png" />
+                <AvatarImage src={project.owner.avatarUrl} />
               )}
 
               <AvatarFallback />
