@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { getInvites } from "@/http/getInvites";
 
+import { CreateInviteForm } from "./CreateInviteForm";
 import { RevokeInviteButton } from "./RevokeInviteButton";
 
 export async function Invites() {
@@ -18,7 +19,9 @@ export async function Invites() {
           <CardHeader>
             <CardTitle>Invite member</CardTitle>
           </CardHeader>
-          <CardContent></CardContent>
+          <CardContent>
+            <CreateInviteForm />
+          </CardContent>
         </Card>
       )}
 
